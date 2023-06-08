@@ -1,0 +1,82 @@
+const express = require("express");
+const bodyParser = require("body-parser");
+const app = express();
+var cors = require("cors");
+app.use(express.json());
+app.use(bodyParser.json());
+app.use(cors());
+const { request, response } = require("express");
+
+const userDataBase = [];
+
+app.get("/get-data", (request, response) => {
+  response.status(200).send({
+    success: "OK",
+    message: "Successful receipt of the date",
+    data: userDataBase
+  });
+});
+
+app.post("/login", (request, response) => {
+  userDataBase.push(request.body);
+  console.log(
+    "🚀 ~ file: server.js ~ line 21 ~ app.post ~ request.body",
+    request.body
+  );
+  if(request.body.username==="kenan" && request.body.password==="kenan2004"){
+    response.status(201).send({
+    success: "OK",
+    message: "Successful date creation",
+    data:{
+      token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NSIsIm5hbWUiOiJrZW5hbiIsImlhdCI6MTUxNjIzOTAyMn0.IYfhKeQCECVSDLpjxPVHUZpCTBklRzpIX19iOqgKCeA"
+    }
+    
+  });
+  }else{
+    response.status(401).send({
+      success: "Wrong",
+      message: "Wrong passsword or name",
+    });
+  }
+  
+});
+
+app.post("/create-data", (request, response) => {
+  userDataBase.push(request.body);
+  console.log(
+    "🚀 ~ file: server.js ~ line 21 ~ app.post ~ request.body",
+    request.body
+  );
+  response.status(201).send({
+    success: "OK",
+    message: "Successful date creation",
+  });
+});
+
+app.put("/update-data:id", (request, response) => {
+  console.log("🚀 ~ file: server.js ~ line 32 ~ app.put ~ request", request);
+  const id = request.params.id;
+  let userItem = userDataBase.findIndex((user) => user.id === id);
+  userDataBase[userItem] = request.body;
+  response.status(201).send({
+    success: "OK",
+    message: "Successful date update",
+  });
+});
+
+app.delete("/delete-data/:id", (request, response) => {
+  const id = request.params.id;
+  console.log("🚀 ~ file: server.js ~ line 44 ~ app.delete ~ id", id);
+  let userItem = userDataBase.findIndex((user) => user.id === id);
+  userDataBase.splice(userItem, 1);
+  response.status(201).send({
+    success: "OK",
+    message: "Successful date update",
+  });
+});
+
+const PORT = 3009;
+
+app.listen(PORT, () => {
+  console.log(`Start server on  http://localhost:${PORT} !`);
+});

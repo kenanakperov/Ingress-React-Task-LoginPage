@@ -1,0 +1,38 @@
+.form{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    h2{
+        color: brown;
+        font-size: 28px;
+        margin-bottom: 15px;
+    }
+    input{
+        margin-bottom: 15px;
+        width: 250px;
+        height: 40px;
+        padding: 0 10px;
+        border-bottom: 3px solid aqua !important;
+        border-top: 1px solid brown !important;
+        color: brown;
+        font-size: medium;
+        border-radius: 10px;
+        outline: none;
+        border: none;
+    }
+    button{
+        width: 150px;
+        height: 40px;
+        background-color: aqua;
+        border: none;
+        border-radius: 15px;
+        cursor: pointer;
+        color: brown;
+        font-size: medium;
+        font-weight: bolder;
+        outline: none;
+        margin-bottom: 8px;
+    }
+}

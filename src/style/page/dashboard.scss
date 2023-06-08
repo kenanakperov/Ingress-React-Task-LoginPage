@@ -1,0 +1,18 @@
+.dashboard{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    button{
+        width: 150px;
+        height: 40px;
+        background-color: aqua;
+        border: none;
+        border-radius: 15px;
+        cursor: pointer;
+        color: brown;
+        font-size: medium;
+        font-weight: bold;
+        outline: none;
+    }
+}
